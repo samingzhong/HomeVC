@@ -25,6 +25,9 @@
   "dependencies": {
     "CTMediator": [
 
+    ],
+    "ModuleActionsCategorys/HomeVC": [
+
     ]
   }
 }
