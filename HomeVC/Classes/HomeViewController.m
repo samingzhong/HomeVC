@@ -33,6 +33,15 @@
 }
 */
 
+- (void)back {
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+
 - (void)setupUI {
     [self.view addSubview:self.myTitleLabel];
     [self.view addSubview:self.imageView];
@@ -54,6 +63,15 @@
             make.centerY.mas_equalTo(0);
     }];
     
+    UIButton *btn = [[UIButton alloc] init];
+    [btn setTitle:@"back" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.imageView);
+        make.top.mas_equalTo(self.imageView.mas_bottom);
+        make.height.mas_equalTo(50);
+    }];
 }
 
 - (UILabel *)myTitleLabel {
