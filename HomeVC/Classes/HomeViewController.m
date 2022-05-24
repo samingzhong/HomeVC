@@ -9,7 +9,7 @@
 #import "Masonry.h"
 
 // 依赖模块
-//#import "CTMediator+SettingVC.h"
+#import "CTMediator+SettingVC.h"
 
 @interface HomeViewController ()
 
@@ -39,6 +39,9 @@
 */
 
 - (void)back {
+    [self toSettingVC];
+    return;
+    
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
@@ -68,20 +71,53 @@
             make.centerY.mas_equalTo(0);
     }];
     
-    UIButton *btn = [[UIButton alloc] init];
-    [btn setTitle:@"back" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    btn.backgroundColor = UIColor.grayColor;
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIStackView *stackView = UIStackView.new;
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.spacing = 2;
+    [self.view addSubview:stackView];
+    [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(self.imageView);
-        make.top.mas_equalTo(self.imageView.mas_bottom);
-        make.height.mas_equalTo(50);
+        make.top.mas_equalTo(self.imageView.mas_bottom).offset(10);
+        make.bottom.mas_lessThanOrEqualTo(0);
     }];
+    
+    NSArray *titles = @[@"back", @"to settingVC", @"to setting VC,methodA"];
+    
+    for (NSString *title in titles) {
+        NSInteger index = [titles indexOfObject:title];
+        UIButton *btn = [[UIButton alloc] init];
+        btn.tag = index;
+        [btn setTitle:title forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(btnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        btn.backgroundColor = UIColor.grayColor;
+        [stackView insertArrangedSubview:btn atIndex:index];
+    }
 }
 
+- (void)btnDidClick:(UIButton *)btn {
+    switch (btn.tag) {
+        case 0:
+            [self back];
+            break;
+        case 1:
+            [self toSettingVC];
+            break;
+        case 2:
+            [self toSettingVC_MethodA];
+            break;
+        default:
+            break;
+    }
+}
+
+
 - (void)toSettingVC {
-    
+    UIViewController *vc = [CTMediator.sharedInstance CTMediator_viewControllerForSetting];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)toSettingVC_MethodA {
+    [CTMediator.sharedInstance CTMediator_methodA];
 }
 
 - (UILabel *)myTitleLabel {
@@ -99,6 +135,14 @@
         _imageView.backgroundColor = UIColor.orangeColor;
     }
     return _imageView;
+}
+
+- (void)setTitle:(NSString *)title {
+    self.myTitleLabel.text = title;
+}
+
+- (void)setImage:(UIImage *)image {
+    self.imageView.image = image;
 }
 
 @end
