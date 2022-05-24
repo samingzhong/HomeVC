@@ -7,6 +7,10 @@
 
 #import "HomeViewController.h"
 #import "Masonry.h"
+
+// 依赖模块
+//#import "CTMediator+SettingVC.h"
+
 @interface HomeViewController ()
 
 @property (nonatomic, strong) UILabel *myTitleLabel;
@@ -68,11 +72,16 @@
     [btn setTitle:@"back" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+    btn.backgroundColor = UIColor.grayColor;
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(self.imageView);
         make.top.mas_equalTo(self.imageView.mas_bottom);
         make.height.mas_equalTo(50);
     }];
+}
+
+- (void)toSettingVC {
+    
 }
 
 - (UILabel *)myTitleLabel {
