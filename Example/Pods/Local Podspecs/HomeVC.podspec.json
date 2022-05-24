@@ -1,0 +1,28 @@
+{
+  "name": "HomeVC",
+  "version": "0.1.0",
+  "summary": "A short description of HomeVC.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/samingzhong/HomeVC",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "samingzhong": "samingzhong@foxmail.com"
+  },
+  "source": {
+    "git": "https://github.com/samingzhong/HomeVC.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "HomeVC/Classes/*",
+  "public_header_files": "Pod/Classes/*.h",
+  "dependencies": {
+    "Masonry": [
+
+    ]
+  }
+}

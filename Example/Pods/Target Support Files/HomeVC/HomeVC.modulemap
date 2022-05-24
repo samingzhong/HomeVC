@@ -1,0 +1,6 @@
+framework module HomeVC {
+  umbrella header "HomeVC-umbrella.h"
+
+  export *
+  module * { export * }
+}

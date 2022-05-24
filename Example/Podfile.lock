@@ -1,0 +1,23 @@
+PODS:
+  - HomeVC (0.1.0):
+    - Masonry
+  - Masonry (1.1.0)
+
+DEPENDENCIES:
+  - HomeVC (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+
+EXTERNAL SOURCES:
+  HomeVC:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  HomeVC: a559e36e6696564938f3cc0127c690b951f0884f
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+
+PODFILE CHECKSUM: 4b42eb7792cd8dcbbe724ab2babb6845fb658fa7
+
+COCOAPODS: 1.10.1
